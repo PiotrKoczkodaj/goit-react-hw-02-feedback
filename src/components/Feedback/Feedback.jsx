@@ -11,10 +11,32 @@ export class Feedback extends Component {
     };
     
     
-    handleClick(){
+  handleClick = (wichButtonWasClicked)=> {
+      
+        switch ('wichButtonWasClicked') {
 
- console.log("co mam tu wpisac zeby dostac sie do wartosci good/neutral/bad ? ;/")
-        
+            case "Good":
+                this.setState((prevState) => ({
+                ...prevState,
+                good: prevState.good + 1,
+            }));
+                break;
+            case "Neutral":
+                this.setState((prevState) => ({
+                ...prevState,
+                neutral: prevState.neutral + 1,
+            }));
+                break;
+            case "Bad":
+                this.setState((prevState) => ({
+                ...prevState,
+                bad: prevState.bad + 1,
+            }));
+                break;
+            default: return 0;
+                
+        };
+       
     };
 
     render() {
@@ -24,9 +46,9 @@ export class Feedback extends Component {
             <>
                 <h1 className={styles.header}>Please leave feedback</h1>
                 <ul className={styles.buttonsList}>
-                    <li><button onClick={this.handleClick}>Good</button></li>
-                    <li><button>Neutral</button></li>
-                    <li><button>Bad</button></li>
+                    <li><button onClick={this.handleClick('Good')}>Good</button></li>
+                    <li><button onClick={this.handleClick('Neutral')}>Neutral</button></li>
+                    <li><button onClick={this.handleClick('Bad')}>Bad</button></li>
                 </ul>
                 <p className={styles.paragraph}>Statistics</p>
                 <ul className={styles.listStats}>
@@ -38,4 +60,4 @@ export class Feedback extends Component {
              
         )
     }
-}
+};
