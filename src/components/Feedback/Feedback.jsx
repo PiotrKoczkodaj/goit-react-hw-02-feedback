@@ -13,7 +13,7 @@ export class Feedback extends Component {
     
     handleClick(){
 
- console.log("vvv")
+ console.log("co mam tu wpisac zeby dostac sie do wartosci good/neutral/bad ? ;/")
         
     };
 
