@@ -1,5 +1,7 @@
 import { Feedback } from "./Feedback/Feedback";
 import { Statistics } from "./Statistics/Statistics"
+import { Section } from "./Section/Section";
+
 import React, { Component } from "react";
 
 export class App extends Component {
@@ -59,8 +61,10 @@ export class App extends Component {
     return (
     <div>
       <Feedback  data={this.state} handleChange={this.handleChange} />
-        <Statistics counter={this.counter } positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />
+      <Statistics counter={this.counter} positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />
+      <Section/>
     </div>
   );}
 
 };
+
