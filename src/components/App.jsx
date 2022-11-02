@@ -35,26 +35,31 @@ export class App extends Component {
       )
     };
   
-  countPositiveFeedbackPercentage = (data) => {
+  counter = (data) => {
+    const total = data.good + data.bad + data.neutral;
+    const percentage = data.good * 100 / total;
+    const number = Math.round(percentage) + "%";
+    return (<p style={{
+      position: "relative",
+      top: "-67px"
+    }}>{number}</p>)
+  };
+
+  countPositiveFeedbackPercentage = () => {
     return (
-      <>
       <p style={{
       position: "relative",
       left: "-87px",
       top:"-33px"
         }}>percentage</p>
-        <p>
-        {this.counterPercentage}
-        </p>
-        </>)
-   };
+    )};
   
   render() {
 
     return (
     <div>
       <Feedback  data={this.state} handleChange={this.handleChange} />
-        <Statistics positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />
+        <Statistics counter={this.counter } positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />
     </div>
   );}
 

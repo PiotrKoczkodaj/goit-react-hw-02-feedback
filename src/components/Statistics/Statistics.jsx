@@ -1,12 +1,12 @@
 
 import styles from './Statistics.module.css';
 
-export const Statistics = ({ data, total,positivePercentage,percentage}) => {
+export const Statistics = ({ data, total,positivePercentage,counter}) => {
     
     const keys = Object.keys(data);
     const values = Object.values(data);
     if (values[0] === 0 && values[1] === 0 && values[2] === 0) {
-        return (<h1>czesc</h1>)
+        return (<h1>no feedback given</h1>)
     }
 
     const renderValue = values.map(value => {
@@ -32,8 +32,9 @@ export const Statistics = ({ data, total,positivePercentage,percentage}) => {
                        
                     {renderValue}
                     {total(data)}
-                    {positivePercentage(data)}
-                    {percentage}
+                    {positivePercentage()}
+                    {counter(data)}
+                    
             </div>
             </div>
         </>
