@@ -6,7 +6,6 @@ export class App extends Component {
   
   constructor() {
    super()
-
     this.state = {
       good: 0,
       neutral: 0,
@@ -18,12 +17,44 @@ export class App extends Component {
     this.setState(state =>({[name]: state[name]+1}));
       };
   
+    countTotalFeedback=(data)=>{
+      return (
+        <>
+        <p style={{
+        position: "relative",
+        left: "-66px"
+          }}>total</p>
+
+          <p style={{
+            position: "relative",
+            top: "-33px"
+          }}>
+            {data.good + data.bad + data.neutral}
+          </p>
+          </>
+      )
+    };
+  
+  countPositiveFeedbackPercentage = (data) => {
+    return (
+      <>
+      <p style={{
+      position: "relative",
+      left: "-87px",
+      top:"-33px"
+        }}>percentage</p>
+        <p>
+        {this.counterPercentage}
+        </p>
+        </>)
+   };
+  
   render() {
 
     return (
     <div>
       <Feedback  data={this.state} handleChange={this.handleChange} />
-      <Statistics  data={this.state} />
+        <Statistics positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />
     </div>
   );}
 

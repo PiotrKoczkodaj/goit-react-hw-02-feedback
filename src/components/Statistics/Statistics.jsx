@@ -1,8 +1,7 @@
 
 import styles from './Statistics.module.css';
 
-export const Statistics = ({ data }) => {
-    
+export const Statistics = ({ data, total,positivePercentage,percentage}) => {
     
     const keys = Object.keys(data);
     const values = Object.values(data);
@@ -11,18 +10,18 @@ export const Statistics = ({ data }) => {
     }
 
     const renderValue = values.map(value => {
-        
             return(<p className={styles.values}>{value}</p>)
-        
     });
+
     const renderKey = keys.map(key => {
         return (<li key={key}><p>{key}</p></li>)
-        
     });
+    
+ 
 
     return (
         <>
-            <h2>Statistics</h2>
+            <h2 >Statistics</h2>
             <div className={styles.container}>
 
                 <ul className={styles.keysList}>
@@ -32,7 +31,9 @@ export const Statistics = ({ data }) => {
              <div className={styles.valuesBox}>
                        
                     {renderValue}
-               
+                    {total(data)}
+                    {positivePercentage(data)}
+                    {percentage}
             </div>
             </div>
         </>
