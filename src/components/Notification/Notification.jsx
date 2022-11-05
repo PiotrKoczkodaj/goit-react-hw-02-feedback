@@ -1,6 +1,6 @@
-export const Notification = ({ message,values }) => {
+export const Notification = ({message}) => {
     
-console.log(values);
+    return (<h2>{message }</h2>)
 
-}
+};
     

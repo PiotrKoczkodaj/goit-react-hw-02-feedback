@@ -13,7 +13,12 @@ export class App extends Component {
       neutral: 0,
       bad: 0,     
   }
- }
+  }
+
+  sum = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+  
       handleChange = evt => {
         const { name } = evt.target;
     this.setState(state =>({[name]: state[name]+1}));
@@ -36,7 +41,7 @@ export class App extends Component {
           </>
       )
     };
-  
+
   counter = (data) => {
     const total = data.good + data.bad + data.neutral;
     const percentage = data.good * 100 / total;
@@ -53,26 +58,29 @@ export class App extends Component {
       position: "relative",
       left: "-87px",
       top:"-33px"
-        }}>percentage</p>
+      }}>
+        percentage
+      </p>
     )};
   
   render() {
 
     return (
-      <div>
+      <>
         <Section title="please leave feedback">
           <Feedback  data={this.state} handleChange={this.handleChange} />
-      </Section>
+        </Section>
+        
         <Section>
-          <Statistics counter={this.counter} positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback}>
-            <Notification values={this.state } message="no feedback given" />
-          </Statistics>
-          
+          {
+            this.sum() === 0 ? (<Notification total={this.state} message="no feedback given" />)
+              :
+              (<Statistics counter={this.counter} positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />)
+          }
       </Section>
-      
-      
-    </div>
-  );}
+    </>
+    )
+  }
 
-};
+}
 
