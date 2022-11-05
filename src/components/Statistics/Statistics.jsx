@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types";
 import styles from './Statistics.module.css';
 
 export const Statistics = ({ data, total,positivePercentage,counter}) => {
@@ -6,7 +6,7 @@ export const Statistics = ({ data, total,positivePercentage,counter}) => {
     const keys = Object.keys(data);
     const values = Object.values(data);
     if (values[0] === 0 && values[1] === 0 && values[2] === 0) {
-        return (<h1>no feedback given</h1>)
+        return (<h2>no feedback given</h2>)
     }
 
     const renderValue = values.map(value => {
@@ -17,8 +17,6 @@ export const Statistics = ({ data, total,positivePercentage,counter}) => {
         return (<li key={key}><p>{key}</p></li>)
     });
     
- 
-
     return (
         <>
             <h2 >Statistics</h2>
@@ -28,16 +26,17 @@ export const Statistics = ({ data, total,positivePercentage,counter}) => {
                 {renderKey}
                 </ul>
                 
-             <div className={styles.valuesBox}>
-                       
+             <div className={styles.valuesBox}>    
                     {renderValue}
                     {total(data)}
                     {positivePercentage()}
                     {counter(data)}
-                    
             </div>
             </div>
         </>
     )
 };
 
+Statistics.propTypes = {
+data: PropTypes.object.isRequired,
+}

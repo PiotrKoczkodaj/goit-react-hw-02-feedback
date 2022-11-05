@@ -1,7 +1,7 @@
 import { Feedback } from "./Feedback/Feedback";
 import { Statistics } from "./Statistics/Statistics"
 import { Section } from "./Section/Section";
-
+import { Notification } from "./Notification/Notification";
 import React, { Component } from "react";
 
 export class App extends Component {
@@ -59,10 +59,18 @@ export class App extends Component {
   render() {
 
     return (
-    <div>
-      <Feedback  data={this.state} handleChange={this.handleChange} />
-      <Statistics counter={this.counter} positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback} />
-      <Section/>
+      <div>
+        <Section title="please leave feedback">
+          <Feedback  data={this.state} handleChange={this.handleChange} />
+      </Section>
+        <Section>
+          <Statistics counter={this.counter} positivePercentage={this.countPositiveFeedbackPercentage} data={this.state} total={this.countTotalFeedback}>
+            <Notification values={this.state } message="no feedback given" />
+          </Statistics>
+          
+      </Section>
+      
+      
     </div>
   );}
 

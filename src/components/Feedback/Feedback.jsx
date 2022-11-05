@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from './Feedback.module.css';
+import PropTypes from "prop-types";
 
 export class Feedback extends Component {
     
@@ -8,21 +9,25 @@ export class Feedback extends Component {
         const data = this.props.data;
         const keys = Object.keys(data);
         const handleChange = this.props.handleChange;
+        const renderButtons = keys.map(key => {
+            return (<li key={key}>
+                <button onClick={handleChange} name={key}>{key}</button>
+            </li>)
+        });
+
         return (
             <>
-                <h1 className={styles.header}>Please leave feedback</h1>
+                
                 <ul className={styles.buttonsList}>
-                    {keys.map(key => {
-                        return (<li key={key}>
-                            <button onClick={handleChange} name={key}>{key}</button>
-                        </li>)
-                    })}
-                    {/* <li><button name="good" onClick={handleChange}>Good</button></li>
-                    <li><button name="neutral" onClick={handleChange}>Neutral</button></li>
-                    <li><button name="bad" onClick={handleChange}>Bad</button></li> */}
+                    {renderButtons}
                 </ul> 
             </>
              
         )
     }
 };
+
+Feedback.propTypes = {
+    data: PropTypes.object.isRequired,
+    keys: PropTypes.array,
+}
